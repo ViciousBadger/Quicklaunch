@@ -242,6 +242,10 @@ namespace Quicklaunch
             if (entry != null)
             {
                 lib.Entries.Remove(entry);
+                if (System.IO.File.Exists(entry.AbsolutePathToImage))
+                {
+                    System.IO.File.Delete(entry.AbsolutePathToImage);
+                }
                 UpdateList();
             }
         }

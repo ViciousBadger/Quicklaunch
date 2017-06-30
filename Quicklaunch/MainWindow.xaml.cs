@@ -58,10 +58,17 @@ namespace Quicklaunch
                     lib = JsonConvert.DeserializeObject<Library>(sr.ReadToEnd());
                     UpdateList();
                 }
-                //Load icons for each loaded game
+                //Load icons and add tags for each loaded game
                 foreach (Entry e in lib.Entries)
                 {
                     e.UpdateBitmap();
+                    foreach (string tag in e.Tags)
+                    {
+                        if (!UsedTags.Any(a => a.Name == tag))
+                        {
+                            UsedTags.Add(new Tag { Name = tag });
+                        }
+                    }
                 }
                 Width = lib.WindowWidth;
                 Height = lib.WindowHeight;

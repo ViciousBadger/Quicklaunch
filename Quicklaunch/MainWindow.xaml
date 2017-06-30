@@ -75,7 +75,8 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!-- <GridViewColumn Header="Playtime" Width="64" DisplayMemberBinding="{Binding PlayTime}" /> -->
-                                <GridViewColumn Header="Title" Width="300px" DisplayMemberBinding="{Binding Title}" />
+                                <GridViewColumn Header="Title" Width="200px" DisplayMemberBinding="{Binding Title}" />
+                                <GridViewColumn Header="Tags" Width="200px" DisplayMemberBinding="{Binding TagList}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

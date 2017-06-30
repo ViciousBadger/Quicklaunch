@@ -67,6 +67,24 @@ namespace Quicklaunch
         [JsonProperty]
         public List<string> Tags { get; set; } = new List<string>();
 
+        public string TagList
+        {
+            get
+            {
+                List<string> orderedTags = Tags.OrderBy(a => a).ToList();
+
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < orderedTags.Count; i++)
+                {
+                    result.Append(orderedTags[i]);
+                    //Add comma for every entry but the last one
+                    if (i != orderedTags.Count - 1)
+                        result.Append(", ");
+                }
+                return result.ToString();
+            }
+        }
+
         public string PathToImage
         {
             get

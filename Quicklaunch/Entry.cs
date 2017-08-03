@@ -85,6 +85,14 @@ namespace Quicklaunch
             }
         }
 
+        public string UseTime
+        {
+            get
+            {
+                return string.Format("{0}h {1}m", MinutesUsed / 60, MinutesUsed % 60);
+            }
+        }
+
         public string PathToImage
         {
             get

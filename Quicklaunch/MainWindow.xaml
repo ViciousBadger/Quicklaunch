@@ -57,12 +57,19 @@
                                     </MenuItem.Icon>
                                 </MenuItem>
                             </ContextMenu>
+                            <ToolTip x:Key="entryTooltip">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Tags:</TextBlock>
+                                    <TextBlock Text="{Binding TagList}" />
+                                </StackPanel>
+                            </ToolTip>
                         </ListView.Resources>
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
                                 <!-- Context menu for each game -->
                                 <Setter Property="ContextMenu" Value="{StaticResource entryMenu}" />
+                                <Setter Property="ToolTip" Value="{StaticResource entryTooltip}" />
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>
@@ -74,9 +81,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <!-- <GridViewColumn Header="Playtime" Width="64" DisplayMemberBinding="{Binding PlayTime}" /> -->
-                                <GridViewColumn Header="Title" Width="200px" DisplayMemberBinding="{Binding Title}" />
-                                <GridViewColumn Header="Tags" Width="200px" DisplayMemberBinding="{Binding TagList}" />
+                                <GridViewColumn Header="Playtime" Width="64" DisplayMemberBinding="{Binding UseTime}" />
+                                <GridViewColumn Header="Title" Width="280px" DisplayMemberBinding="{Binding Title}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -183,6 +189,11 @@
                             <ListBox.Resources>
                                 <!-- Context menu for each tag -->
                                 <ContextMenu x:Key="tagMenu">
+                                    <MenuItem Header="Rename tag" Click="RenameTagMenuItem_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="Icons/edit.png" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
                                     <MenuItem Header="Remove tag" Click="RemoveTagMenuItem_Click">
                                         <MenuItem.Icon>
                                             <Image Source="Icons/remove.png" />

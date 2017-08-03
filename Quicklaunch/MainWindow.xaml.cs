@@ -405,5 +405,32 @@ namespace Quicklaunch
                 UsedTags.Remove(tag);
             }
         }
+
+        private void RenameTagMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tag tag = (sender as MenuItem)?.DataContext as Tag;
+            if (tag != null)
+            {
+                RenameTag renameWindow = new RenameTag();
+                renameWindow.ShowDialog();
+                if (!renameWindow.Cancelled)
+                {
+                    //Change the tag name on every entry that has it
+                    foreach (Entry entry in lib.Entries)
+                    {
+                        for (int i = 0; i < entry.Tags.Count; i++)
+                        {
+                            if (entry.Tags[i] == tag.Name)
+                            {
+                                entry.Tags[i] = renameWindow.NewTagName;
+                            }
+                        }
+                    }
+
+                    //Change the name of the Tag object
+                    tag.Name = renameWindow.NewTagName;
+                }
+            }
+        }
     }
 }
